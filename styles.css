@@ -3,8 +3,8 @@
    ============================================================ */
 :root{
   /* ---- Woo Cycle brand palette ---- */
-  --cream:#EFE8D5;        /* Woo beige — page background */
-  --cream-2:#E7DDC6;      /* deeper beige — cards / panels */
+  --cream:#FAF9F4;        /* book paper — base / light elements */
+  --cream-2:#F1E9D7;      /* warm card / panel over the paper */
   --ink:#362E23;          /* dark brown — headings & text */
   --ink-soft:#5E5344;     /* muted brown — body text */
   --plum:#5F2950;         /* deep plum — primary brand */
@@ -20,8 +20,9 @@
   --line:rgba(54,46,35,.14);
   --shadow:24px 24px 60px rgba(54,46,35,.12);
 
-  --f-display:"Fraunces", Georgia, serif;
-  --f-body:"Hanken Grotesk", system-ui, sans-serif;
+  /* the book's typeface — real Comic Sans where installed, Comic Neue everywhere else */
+  --f-display:"Comic Sans MS","Comic Neue","Chalkboard SE",cursive;
+  --f-body:"Comic Sans MS","Comic Neue","Chalkboard SE",cursive;
 }
 
 *{box-sizing:border-box; margin:0; padding:0;}
@@ -35,13 +36,12 @@ body{
   overflow-x:hidden;
 }
 
-/* grain overlay */
+/* the book's own paper texture, held behind everything (iOS-safe) */
 body::before{
   content:"";
-  position:fixed; inset:0;
-  pointer-events:none; z-index:9999;
-  opacity:.05; mix-blend-mode:multiply;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  position:fixed; inset:0; z-index:-1;
+  pointer-events:none;
+  background:var(--cream) url("assets/paper.jpg") center center / cover no-repeat;
 }
 
 a{color:inherit; text-decoration:none;}
@@ -72,11 +72,11 @@ img{max-width:100%; display:block;}
 header{
   position:sticky; top:0; z-index:100;
   backdrop-filter:blur(8px);
-  background:rgba(239,232,213,.72);
+  background:rgba(250,249,244,.72);
   border-bottom:1px solid transparent;
   transition:border-color .4s, background .4s;
 }
-header.scrolled{border-color:var(--line); background:rgba(239,232,213,.9);}
+header.scrolled{border-color:var(--line); background:rgba(250,249,244,.9);}
 .nav{display:flex; align-items:center; justify-content:space-between; padding:1.05rem 0;}
 .logo{display:flex; align-items:center; gap:.6rem; font-family:var(--f-display); font-weight:600; font-size:1.35rem; letter-spacing:-.01em;}
 .logo em{font-style:italic; color:var(--plum);}
@@ -108,10 +108,10 @@ header.scrolled{border-color:var(--line); background:rgba(239,232,213,.9);}
 
 h1{
   font-family:var(--f-display);
-  font-weight:400;
-  font-size:clamp(2.6rem,5.6vw,4.6rem);
-  line-height:1.04;
-  letter-spacing:-.02em;
+  font-weight:700;
+  font-size:clamp(2.4rem,5.2vw,4.2rem);
+  line-height:1.12;
+  letter-spacing:normal;
   margin-bottom:1.4rem;
 }
 h1 .q{font-style:italic; color:var(--plum); position:relative;}
@@ -129,6 +129,24 @@ h1 .q::after{content:"?"; color:var(--clay); font-style:normal;}
 .float.seed{top:14%; right:8%; width:26px; height:26px; border-radius:50%; background:var(--blush); animation:bob 5s ease-in-out infinite .4s;}
 .float.leaf{bottom:16%; left:4%; animation:bob 8s ease-in-out infinite .2s;}
 @keyframes bob{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-14px) rotate(4deg)}}
+
+/* organic illustration stage (hero) */
+.illus-stage{
+  position:absolute; inset:0; margin:auto;
+  border-radius:47% 53% 46% 54% / 55% 47% 53% 45%;
+  overflow:hidden; box-shadow:var(--shadow);
+  background:linear-gradient(160deg,var(--blush),var(--teal));
+  animation:morph 14s ease-in-out infinite;
+}
+.illus-stage img{width:100%; height:100%; object-fit:cover; object-position:center 28%;}
+@keyframes morph{
+  0%,100%{border-radius:47% 53% 46% 54% / 55% 47% 53% 45%;}
+  50%{border-radius:53% 47% 54% 46% / 45% 55% 45% 55%;}
+}
+
+/* illustration inside a portrait frame (about / figures on transparent bg) */
+.portrait.has-img{padding:0; background:linear-gradient(160deg,var(--teal),var(--blush));}
+.portrait.has-img img{width:100%; height:100%; object-fit:cover; object-position:center top;}
 
 /* ---------- Interior page hero ---------- */
 .page-hero{position:relative; text-align:center; padding:clamp(3.5rem,9vh,6.5rem) 0 clamp(2.5rem,6vh,4rem); overflow:hidden;}
@@ -153,6 +171,7 @@ h1 .q::after{content:"?"; color:var(--clay); font-style:normal;}
 .section-head .kicker{font-size:.82rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--sage-deep); margin-bottom:1rem;}
 .section-head h2{font-family:var(--f-display); font-weight:400; font-size:clamp(1.8rem,3.6vw,2.7rem); line-height:1.16; letter-spacing:-.01em; text-wrap:balance;}
 .section-head h2 em{font-style:italic; color:var(--clay);}
+.prose{max-width:66ch; margin-inline:auto;}
 .prose > * + *{margin-top:1.15rem;}
 .prose p{font-size:clamp(1.02rem,1.4vw,1.16rem); color:var(--ink-soft); text-wrap:pretty;}
 .prose p.lead-in{font-family:var(--f-display); font-style:italic; font-size:clamp(1.2rem,2vw,1.5rem); color:var(--ink); line-height:1.35;}
@@ -248,12 +267,15 @@ h1 .q::after{content:"?"; color:var(--clay); font-style:normal;}
 .partner-block h3{font-family:var(--f-display); font-weight:500; font-size:clamp(1.3rem,2.4vw,1.8rem); margin-bottom:.5rem;}
 .partner-block .sub{color:var(--ink-soft); margin-bottom:2rem; font-size:.98rem;}
 .feature-sponsor{display:grid; place-items:center; gap:1.2rem; background:var(--cream-2); border:1px solid var(--line); border-radius:28px; padding:clamp(2rem,5vw,3.5rem);}
-.feature-sponsor .logo-plate{width:min(280px,70vw); height:120px; border-radius:16px; background:#fff; border:1px solid var(--line); display:grid; place-items:center; font-family:var(--f-display); font-weight:600; font-size:1.6rem; color:var(--ink); letter-spacing:.02em;}
+.feature-sponsor .logo-plate{width:min(300px,72vw); min-height:120px; border-radius:16px; background:#fff; border:1px solid var(--line); display:grid; place-items:center; padding:1.4rem 1.8rem; font-family:var(--f-display); font-weight:600; font-size:1.6rem; color:var(--ink); letter-spacing:.02em;}
+.feature-sponsor .logo-plate img{max-height:80px; width:auto;}
 .feature-sponsor .role{font-size:.78rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--gold);}
 
 .logo-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:1rem;}
-.logo-grid .logo-plate{height:96px; border-radius:16px; background:var(--cream-2); border:1px solid var(--line); display:grid; place-items:center; color:var(--ink-soft); font-weight:600; font-size:.9rem; text-align:center; padding:.5rem; transition:.3s;}
-.logo-grid .logo-plate:hover{background:#fff; transform:translateY(-4px); box-shadow:var(--shadow);}
+.logo-grid .logo-plate{height:96px; border-radius:16px; background:#fff; border:1px solid var(--line); display:grid; place-items:center; color:var(--ink-soft); font-weight:600; font-size:.9rem; text-align:center; padding:.8rem; transition:.3s; overflow:hidden;}
+.logo-grid .logo-plate.empty{background:var(--cream-2);}
+.logo-grid .logo-plate img{max-height:66px; max-width:88%; width:auto; object-fit:contain;}
+.logo-grid .logo-plate:hover{transform:translateY(-4px); box-shadow:var(--shadow);}
 
 /* supporter name lists */
 .namelist{display:flex; flex-wrap:wrap; gap:.7rem; justify-content:center; max-width:820px; margin:1.5rem auto 0;}
@@ -266,16 +288,16 @@ h1 .q::after{content:"?"; color:var(--clay); font-style:normal;}
 .signup-inner{position:relative; display:grid; grid-template-columns:1fr 1fr; gap:2.4rem; align-items:center;}
 .signup h2{font-family:var(--f-display); font-weight:400; font-size:clamp(1.7rem,3.4vw,2.5rem); line-height:1.12; letter-spacing:-.01em; margin-bottom:.8rem;}
 .signup h2 em{font-style:italic; color:var(--blush);}
-.signup p{color:rgba(239,232,213,.75); max-width:40ch;}
+.signup p{color:rgba(250,249,244,.75); max-width:40ch;}
 .signup form{display:flex; gap:.7rem; flex-wrap:wrap;}
 .signup input{
-  flex:1; min-width:200px; padding:.95em 1.3em; border-radius:999px; border:1.5px solid rgba(239,232,213,.25);
-  background:rgba(239,232,213,.08); color:var(--cream); font-family:var(--f-body); font-size:1rem;
+  flex:1; min-width:200px; padding:.95em 1.3em; border-radius:999px; border:1.5px solid rgba(250,249,244,.25);
+  background:rgba(250,249,244,.08); color:var(--cream); font-family:var(--f-body); font-size:1rem;
 }
-.signup input::placeholder{color:rgba(239,232,213,.55);}
+.signup input::placeholder{color:rgba(250,249,244,.55);}
 .signup input:focus{outline:none; border-color:var(--blush);}
 .signup .btn-primary{box-shadow:none;}
-.signup .note{font-size:.82rem; color:rgba(239,232,213,.55); margin-top:.9rem;}
+.signup .note{font-size:.82rem; color:rgba(250,249,244,.55); margin-top:.9rem;}
 
 /* ---------- Contact band ---------- */
 .contact-band{text-align:center; background:var(--magenta); color:#fff; border-radius:34px; padding:clamp(2.6rem,6vw,4.5rem); margin-bottom:clamp(4rem,8vh,6rem);}
@@ -302,7 +324,10 @@ section{position:relative;}
 .community-head h2 em{font-style:italic; color:var(--clay);}
 
 /* ---------- Footer ---------- */
-footer{border-top:1px solid var(--line); padding:clamp(3rem,6vh,4.5rem) 0 2.5rem;}
+.footer-wave{width:100%; line-height:0; pointer-events:none;}
+.footer-wave img{width:100%; height:auto; display:block;}
+footer{border-top:1px solid var(--line); padding:0;}
+footer .wrap{padding-top:clamp(2.6rem,6vh,4rem); padding-bottom:clamp(2rem,4vh,2.6rem);}
 .foot-grid{display:grid; grid-template-columns:1.6fr 1fr 1fr 1.2fr; gap:2.5rem; margin-bottom:3rem;}
 .foot-brand .logo{margin-bottom:1rem;}
 .foot-brand p{color:var(--ink-soft); max-width:32ch; font-size:.96rem;}
@@ -310,7 +335,7 @@ footer{border-top:1px solid var(--line); padding:clamp(3rem,6vh,4.5rem) 0 2.5rem
 .foot-col a{display:block; color:var(--ink-soft); font-size:.96rem; margin-bottom:.7rem; transition:color .25s;}
 .foot-col a:hover{color:var(--clay-deep);}
 .socials{display:flex; gap:.7rem; margin-top:.3rem;}
-.socials a{width:38px; height:38px; border-radius:50%; border:1px solid var(--line); display:grid; place-items:center; transition:.3s;}
+.socials a{width:44px; height:44px; border-radius:50%; border:1px solid var(--line); display:grid; place-items:center; transition:.3s;}
 .socials a:hover{background:var(--ink); color:var(--cream); border-color:var(--ink); transform:translateY(-2px);}
 .foot-bottom{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; padding-top:1.8rem; border-top:1px solid var(--line); font-size:.86rem; color:var(--ink-soft);}
 .foot-bottom a:hover{color:var(--clay-deep);}
@@ -330,6 +355,21 @@ footer{border-top:1px solid var(--line); padding:clamp(3rem,6vh,4.5rem) 0 2.5rem
 .hero-art.load{animation-name:loadArt;}
 @keyframes loadArt{from{opacity:0; transform:scale(.92) rotate(-3deg);} to{opacity:1; transform:none;}}
 
+/* ---------- Comic Sans / Comic Neue tuning ---------- */
+/* the rounded book font reads best with normal tracking (the old serif used tight negative spacing) */
+h2, h3,
+.logo,
+.statement p,
+.pullquote blockquote,
+.page-hero .statement-line,
+.intro h2, .community-head h2, .signup h2, .contact-band h2,
+.section-head h2, .card h3, .cover .reveal, .partner-block h3,
+.feature-sponsor .logo-plate{letter-spacing:normal;}
+.eyebrow, .kicker, .card .tag, .foot-col h4, .cover .date,
+.feature-sponsor .role, .pullquote cite, .ways li{letter-spacing:.08em;}
+h2, .intro h2, .community-head h2, .signup h2, .contact-band h2,
+.section-head h2, .page-hero h1{font-weight:700;}
+
 @media (prefers-reduced-motion:reduce){
   *{animation:none!important; transition:none!important;}
   .reveal-up{opacity:1; transform:none;}
@@ -339,7 +379,7 @@ footer{border-top:1px solid var(--line); padding:clamp(3rem,6vh,4.5rem) 0 2.5rem
 /* ---------- Responsive ---------- */
 @media (max-width:920px){
   .hero-grid{grid-template-columns:1fr; gap:2.5rem;}
-  .hero-art{max-width:440px; margin-inline:auto; order:-1;}
+  .hero-art{width:100%; max-width:360px; margin-inline:auto; order:-1;}
   .cards, .cards.two{grid-template-columns:1fr;}
   .split, .split.narrow-text{grid-template-columns:1fr; gap:2rem;}
   .split .portrait{max-width:420px; margin-inline:auto;}
