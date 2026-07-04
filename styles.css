@@ -115,7 +115,6 @@ h1{
   margin-bottom:1.4rem;
 }
 h1 .q{font-style:italic; color:var(--plum); position:relative;}
-h1 .q::after{content:"?"; color:var(--clay); font-style:normal;}
 .lead{font-size:clamp(1.08rem,1.6vw,1.28rem); color:var(--ink-soft); max-width:34ch; margin-bottom:2.2rem;}
 .hero-btns{display:flex; gap:1rem; flex-wrap:wrap;}
 
@@ -227,7 +226,7 @@ h1 .q::after{content:"?"; color:var(--clay); font-style:normal;}
 .card:hover .card-link .arrow{transform:translateX(4px);}
 
 /* card variants */
-.card.buy .tag{background:var(--ink); color:var(--cream);}
+.card.buy .tag{background:var(--magenta); color:#fff;}
 .card.join{background:var(--magenta); border-color:transparent; color:#fff;}
 .card.join h3, .card.join p{color:#fff;}
 .card.join p{color:rgba(255,255,255,.88);}
@@ -369,6 +368,87 @@ h2, h3,
 .feature-sponsor .role, .pullquote cite, .ways li{letter-spacing:.08em;}
 h2, .intro h2, .community-head h2, .signup h2, .contact-band h2,
 .section-head h2, .page-hero h1{font-weight:700;}
+
+/* ---------- Card photo (item 3) ---------- */
+.card-photo{
+  aspect-ratio:3/4; border-radius:14px; margin-bottom:1.5rem; overflow:hidden;
+  background:linear-gradient(160deg,var(--blush),var(--teal)); position:relative;
+}
+.card-photo img{width:100%; height:100%; object-fit:cover; object-position:center 22%;}
+
+/* ---------- Floating question marks (item 10) ---------- */
+.float-q{position:absolute; font-family:var(--f-display); font-weight:700; line-height:1; pointer-events:none; z-index:0; opacity:.85;}
+.page-hero .float-q{z-index:0;}
+.page-hero .float-q.qa{left:5%; top:34%; font-size:clamp(2.2rem,4vw,3.4rem); color:var(--magenta); animation:bob 6s ease-in-out infinite;}
+.page-hero .float-q.qb{right:6%; top:56%; font-size:clamp(1.7rem,3vw,2.6rem); color:var(--sage-deep); animation:bob 7s ease-in-out infinite .7s;}
+.page-hero .float-q.qc{right:12%; top:22%; font-size:clamp(1.3rem,2.2vw,1.9rem); color:var(--clay); animation:bob 8s ease-in-out infinite .3s;}
+
+/* ---------- Pull-quote closing mark + highlight (items 12 & 13) ---------- */
+.pullquote blockquote::after{content:"\201D"; font-family:var(--f-display); font-size:1.1em; color:var(--magenta); font-style:normal; margin-left:.05em; line-height:0;}
+.pullquote .hl{color:var(--magenta); font-weight:700;}
+
+/* ---------- Nav active pill (item 15) ---------- */
+.nav-cta.active{background:var(--magenta); color:#FFFFFF !important;}
+.nav-cta.active:hover{background:var(--magenta);}
+
+/* ---------- Lina peeping + speech bubble (item 11) ---------- */
+.our-story{position:relative;}
+.oss{position:relative;}
+.lina-peek{position:absolute; left:0; bottom:-1.2rem; width:clamp(110px,12vw,160px); z-index:2; pointer-events:none;}
+.lina-peek img{width:100%; height:auto; filter:drop-shadow(0 10px 16px rgba(54,46,35,.22));}
+.lina-peek .speech{
+  position:absolute; left:44%; bottom:calc(100% - 20px); transform:translateX(-34%);
+  background:#fff; border:2px solid var(--ink); color:var(--ink);
+  border-radius:16px 16px 16px 4px; padding:.55em .9em; font-size:clamp(.8rem,1.1vw,.95rem);
+  font-weight:600; width:max-content; max-width:160px; line-height:1.25; text-align:center;
+  box-shadow:0 8px 18px rgba(54,46,35,.14);
+}
+.lina-peek .speech::after{content:""; position:absolute; left:22px; bottom:-16px; width:0; height:0; border:8px solid transparent; border-top-color:var(--ink);}
+.lina-peek .speech::before{content:""; position:absolute; left:23px; bottom:-12px; width:0; height:0; border:7px solid transparent; border-top-color:#fff; z-index:1;}
+
+/* ---------- Get Your Copy: cover + stacked options (item 16) ---------- */
+.copy-choose{display:grid; grid-template-columns:.85fr 1.15fr; gap:clamp(1.5rem,3vw,2.6rem); align-items:start;}
+.copy-cover{position:sticky; top:100px;}
+.copy-cover .cover{aspect-ratio:3/4; margin:0;}
+.copy-options{display:flex; flex-direction:column; gap:1rem;}
+.option-row{
+  display:flex; gap:1.2rem; align-items:center;
+  background:var(--cream-2); border:1px solid var(--line); border-radius:20px;
+  padding:1.3rem 1.5rem; transition:transform .3s cubic-bezier(.2,.8,.2,1), box-shadow .3s, border-color .3s;
+}
+.option-row:hover{transform:translateY(-4px); box-shadow:var(--shadow); border-color:transparent;}
+.option-row.feature{background:var(--plum); border-color:transparent;}
+.option-row.feature h3, .option-row.feature p{color:#fff;}
+.option-row.feature p{color:rgba(255,255,255,.85);}
+.option-row.feature .opt-cta{color:#fff;}
+.option-row .opt-icon{flex:none; width:52px; height:52px; border-radius:14px; display:grid; place-items:center; background:var(--magenta); color:#fff;}
+.option-row.feature .opt-icon{background:var(--gold);}
+.option-row .opt-icon svg{width:26px; height:26px; stroke:currentColor; fill:none; stroke-width:2;}
+.option-row .opt-body{flex:1; min-width:0;}
+.option-row .opt-tag{font-size:.68rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--clay-deep); margin-bottom:.2rem;}
+.option-row.feature .opt-tag{color:var(--blush);}
+.option-row h3{font-family:var(--f-display); font-weight:700; font-size:1.2rem; margin-bottom:.25rem; letter-spacing:normal;}
+.option-row p{font-size:.92rem; color:var(--ink-soft); margin:0 0 .5rem;}
+.option-row .opt-cta{font-weight:700; font-size:.92rem; color:var(--clay-deep); display:inline-flex; align-items:center; gap:.4rem;}
+.option-row .opt-cta.muted{color:var(--ink-soft);}
+.option-row .opt-cta .arrow{transition:transform .3s;}
+.option-row:hover .opt-cta .arrow{transform:translateX(4px);}
+
+/* ---------- Footer note (item 8) ---------- */
+.foot-note{text-align:center; margin:0 0 1.6rem; font-size:.95rem;}
+.foot-note a{color:var(--ink-soft);}
+.foot-note a:hover{color:var(--clay-deep);}
+.foot-note strong{color:var(--plum); font-weight:700;}
+
+@media (max-width:920px){
+  .copy-choose{grid-template-columns:1fr; gap:1.6rem;}
+  .copy-cover{position:static; max-width:300px; margin-inline:auto;}
+  .lina-peek{width:96px; bottom:-.6rem;}
+}
+@media (max-width:560px){
+  .lina-peek{display:none;}
+  .option-row{flex-wrap:wrap;}
+}
 
 @media (prefers-reduced-motion:reduce){
   *{animation:none!important; transition:none!important;}
