@@ -11,7 +11,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body class="home">
 
 <!-- ================= HEADER ================= -->
 <header id="site-header">
@@ -32,44 +32,76 @@
 <main id="top">
 
 <!-- ================= HERO ================= -->
-<section class="hero">
-  <div class="wrap hero-grid">
-    <div class="hero-copy">
-      <span class="eyebrow load d1">A gentle picture book</span>
-      <h1 class="load d2">Every big conversation begins with a <span class="q">small question</span></h1>
+<section class="wow-hero">
+  <div class="wrap wow-hero-wrap">
+
+    <p class="wow-eyebrow load d1">A gentle picture book &middot; out July 9, 2026</p>
+
+    <h1 class="wow-title" aria-label="Every big conversation begins with a small question">
+      <span class="wt-line" aria-hidden="true"><span data-split>Every big</span></span>
+      <span class="wt-line wt-outline" aria-hidden="true"><span data-split>conversation</span></span>
+      <span class="wt-line wt-small" aria-hidden="true"><em data-split>begins with a</em></span>
+      <span class="wt-line wt-accent" aria-hidden="true"><span class="q" data-split>small question</span><span class="wt-q" data-split>?</span></span>
+    </h1>
+
+    <div class="wow-art" data-cursor="hello!">
+      <div class="wow-art-stage">
+        <img src="assets/hero-maia.png" alt="A mother and daughter sharing a gentle conversation — illustration from The Woo Cycle" />
+      </div>
+      <img class="wow-float wf-flower" src="assets/flower.png" alt="" aria-hidden="true" data-parallax="-14" />
+      <span class="wow-float wf-q1" aria-hidden="true" data-parallax="-24">?</span>
+      <span class="wow-float wf-q2" aria-hidden="true" data-parallax="10">?</span>
+    </div>
+
+    <div class="wow-hero-foot">
       <p class="lead load d3">A gentle picture book helping children understand their bodies with curiosity, confidence and care.</p>
       <div class="hero-btns load d4">
-        <a href="get-your-copy.html" class="btn btn-primary">Get Your Copy <span class="arrow">→</span></a>
-        <a href="about.html" class="btn btn-ghost">Our Story</a>
+        <a href="get-your-copy.html" class="btn btn-primary" data-magnet>Get Your Copy <span class="arrow">→</span></a>
+        <a href="about.html" class="btn btn-ghost" data-magnet>Our Story</a>
       </div>
     </div>
 
-    <div class="hero-art load d5">
-      <div class="illus-stage">
-        <img src="assets/hero-maia.png" alt="A mother and daughter sharing a gentle conversation — illustration from The Woo Cycle" />
-      </div>
-      <span class="float q1">?</span>
-      <span class="float q2">?</span>
-      <img class="float seedflower" src="assets/flower.png" alt="" aria-hidden="true" />
-      <svg class="float leaf" width="46" height="46" viewBox="0 0 46 46" aria-hidden="true">
-        <path d="M4 42C4 20 24 4 42 4c0 22-20 38-38 38Z" fill="#8AD2CC"/>
-        <path d="M10 36C18 24 30 14 40 8" stroke="#FBF3E7" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+    <a class="scroll-cue load d5" href="#story" aria-label="Scroll to the story">
+      <svg viewBox="0 0 120 120" aria-hidden="true">
+        <defs><path id="cuecircle" d="M60,60 m-42,0 a42,42 0 1,1 84,0 a42,42 0 1,1 -84,0"/></defs>
+        <text><textPath href="#cuecircle">turn the page &middot; turn the page &middot; turn the page &middot;</textPath></text>
       </svg>
-    </div>
+      <span class="cue-arrow" aria-hidden="true">↓</span>
+    </a>
   </div>
 </section>
 
-<!-- ================= INTRO / ABOUT ================= -->
-<section class="intro">
-  <span class="doodle flower hide-sm" aria-hidden="true" style="top:12%; right:5%;">
-    <img src="assets/flower.png" alt="" />
-  </span>
-  <div class="wrap">
-    <p class="kicker reveal-up">Why we made this</p>
-    <div class="rule reveal-up" data-delay="1"></div>
-    <h2 class="reveal-up" data-delay="1">Big conversations often begin with small questions.</h2>
-    <p class="reveal-up" data-delay="2">The Woo Cycle was created to help families navigate conversations about bodies, puberty and menstruation with confidence, care and curiosity — so no question ever feels too big to ask.</p>
-    <a href="about.html" class="btn btn-ghost reveal-up" data-delay="3">Learn More <span class="arrow">→</span></a>
+<!-- ================= MARQUEE ================= -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span class="mq-chunk">
+      <span>Curiosity</span><img src="assets/flower.png" alt="" />
+      <span>Confidence</span><img src="assets/flower.png" alt="" />
+      <span>Care</span><img src="assets/flower.png" alt="" />
+      <span class="mq-em">Cover reveal &middot; July 9</span><img src="assets/flower.png" alt="" />
+    </span>
+    <span class="mq-chunk">
+      <span>Curiosity</span><img src="assets/flower.png" alt="" />
+      <span>Confidence</span><img src="assets/flower.png" alt="" />
+      <span>Care</span><img src="assets/flower.png" alt="" />
+      <span class="mq-em">Cover reveal &middot; July 9</span><img src="assets/flower.png" alt="" />
+    </span>
+  </div>
+</div>
+
+<!-- ================= CHAPTER (pinned, scroll-scrubbed) ================= -->
+<section class="chapter" id="story">
+  <div class="chapter-card">
+    <p class="chapter-no">— Page one —</p>
+    <p class="chapter-text" data-words>
+      <em class="ch-quote">“Mum… can I ask you something?”</em>
+      Every big conversation starts exactly here — with one small, brave question.
+      The Woo Cycle gives families the words to answer with
+      <strong class="ch-hi">curiosity, confidence and care.</strong>
+    </p>
+    <a class="chapter-link" href="about.html">Read our story <span class="arrow">→</span></a>
+    <img class="chapter-peek" src="assets/maia-peek-web.png" alt="Maia peeking into the page" />
+    <img class="chapter-flower" src="assets/flower.png" alt="" aria-hidden="true" />
   </div>
 </section>
 
@@ -84,9 +116,9 @@
       <h2 class="reveal-up" data-delay="1">Ways to be part of the <em>Woo Circle</em></h2>
     </div>
 
-    <div class="cards">
+    <div class="cards wow-cards">
       <!-- Card 1: Buy -->
-      <article class="card buy reveal-up">
+      <article class="card buy tilt-a" data-cursor="the book">
         <span class="tag">The Book</span>
         <div class="cover">
           <span class="reveal">Cover reveal</span>
@@ -98,7 +130,7 @@
       </article>
 
       <!-- Card 2: Join -->
-      <article class="card join reveal-up" data-delay="1">
+      <article class="card join tilt-b" data-cursor="join in">
         <span class="tag">Community</span>
         <div class="card-photo"><img src="assets/card-join.jpg" alt="A parent and child laughing together at home" /></div>
         <h3>Join the Woo Circle</h3>
@@ -107,7 +139,7 @@
       </article>
 
       <!-- Card 3: Support -->
-      <article class="card support reveal-up" data-delay="2">
+      <article class="card support tilt-c" data-cursor="support">
         <span class="tag">Support</span>
         <div class="card-photo"><img src="assets/card-support.jpg" alt="A person with brightly colour-painted hands" /></div>
         <h3>Support the mission</h3>
@@ -118,6 +150,14 @@
         </div>
       </article>
     </div>
+  </div>
+</section>
+
+<!-- ================= OUTRO (kinetic fill) ================= -->
+<section class="outro" aria-label="No question too big">
+  <div class="outro-line" aria-hidden="true">
+    <span class="outro-ghost">No question<br>too big.</span>
+    <span class="outro-fill">No question<br>too big.</span>
   </div>
 </section>
 
@@ -132,7 +172,7 @@
       <div class="reveal-up" data-delay="1">
         <form data-signup>
           <input type="email" placeholder="Your email address" required aria-label="Email address" />
-          <button type="submit" class="btn btn-primary">Join the Circle</button>
+          <button type="submit" class="btn btn-primary" data-magnet>Join the Circle</button>
         </form>
         <p class="note">No spam, ever. Unsubscribe any time. <span class="signup-thanks" style="display:none;color:var(--blush)">Thank you — you're on the list!</span></p>
       </div>
@@ -194,6 +234,8 @@
   <div class="footer-wave"><img src="assets/footer-wave.png" alt="" aria-hidden="true" /></div>
 </footer>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="app.js"></script>
 </body>
 </html>
