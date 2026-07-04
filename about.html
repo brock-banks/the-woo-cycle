@@ -47,12 +47,9 @@
   </div>
 </section>
 
-<!-- ================= STORY SPINE (winding path) ================= -->
+<!-- ================= STORY SPINE (real book flourish) ================= -->
 <div class="spine-wrap">
-  <svg class="spine-svg" viewBox="0 0 100 1000" preserveAspectRatio="none" aria-hidden="true">
-    <path class="spine-path" fill="none" stroke-linecap="round" vector-effect="non-scaling-stroke"
-      d="M52 0 C22 90 86 175 50 265 C16 355 82 460 46 552 C14 642 80 752 52 852 C34 918 56 968 50 1000" />
-  </svg>
+  <img class="spine-art" src="assets/spine-art.png" alt="" aria-hidden="true" />
 
 <!-- ================= OUR STORY ================= -->
 <section class="section our-story">
@@ -121,6 +118,8 @@
   </div>
 </section>
 </div><!-- /.spine-wrap -->
+
+<div class="flourish-divider" aria-hidden="true"><img src="assets/divider.png" alt="" /></div>
 
 <!-- ================= WHY IT MATTERS ================= -->
 <section class="section">
@@ -234,29 +233,26 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script>
 (function(){
-  var path = document.querySelector('.spine-path');
-  if (!path) return;
-  var len = path.getTotalLength();
-  path.style.strokeDasharray = len;
+  var spine = document.querySelector('.spine-art');
+  if (!spine) return;
 
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var narrow = window.matchMedia('(max-width: 1024px)').matches;
 
-  // Fallback: no GSAP, reduced motion, or small screens -> show the path fully drawn.
+  // Fallback: no GSAP, reduced motion, or small screens -> show the flourish fully.
   if (!window.gsap || !window.ScrollTrigger || reduce || narrow){
-    path.style.strokeDashoffset = 0;
+    spine.style.clipPath = 'inset(0 0 0 0)';
     return;
   }
 
   gsap.registerPlugin(ScrollTrigger);
-  path.style.strokeDashoffset = len;
 
-  // Draw the trail as the reader scrolls through the story.
-  gsap.to(path, {
-    strokeDashoffset: 0,
-    ease: 'none',
-    scrollTrigger: { trigger: '.spine-wrap', start: 'top 65%', end: 'bottom 78%', scrub: 0.6 }
-  });
+  // Reveal the flourish top-to-bottom as the reader scrolls into the story.
+  gsap.fromTo(spine,
+    { clipPath: 'inset(0 0 100% 0)' },
+    { clipPath: 'inset(0 0 0% 0)', ease: 'none',
+      scrollTrigger: { trigger: '.our-story', start: 'top 82%', end: 'top 28%', scrub: 0.6 } }
+  );
 
   // A whisper of parallax on Lina and the floating question marks.
   gsap.to('.lina-peek', {
