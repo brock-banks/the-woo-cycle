@@ -280,12 +280,13 @@ h1 .q, .statement p .hi{
 .partner-block h3{font-family:var(--f-display); font-weight:500; font-size:clamp(1.3rem,2.4vw,1.8rem); margin-bottom:.5rem;}
 .partner-block .sub{color:var(--ink-soft); margin-bottom:2rem; font-size:.98rem;}
 .feature-sponsor{display:grid; place-items:center; gap:1.2rem; background:var(--cream-2); border:1px solid var(--line); border-radius:28px; padding:clamp(2rem,5vw,3.5rem);}
-.feature-sponsor .logo-plate{width:min(300px,72vw); min-height:120px; border-radius:16px; background:#fff; border:1px solid var(--line); display:grid; place-items:center; padding:1.4rem 1.8rem; font-family:var(--f-display); font-weight:600; font-size:1.6rem; color:var(--ink); letter-spacing:.02em;}
-.feature-sponsor .logo-plate img{max-height:80px; width:auto;}
+.feature-sponsor .logo-plate{width:min(360px,84vw); min-height:120px; border-radius:16px; background:#fff; border:1px solid var(--line); display:grid; place-items:center; padding:2rem 2.2rem; font-family:var(--f-display); font-weight:600; font-size:1.6rem; color:var(--ink); letter-spacing:.02em;}
+.feature-sponsor .logo-plate img{max-height:170px; max-width:100%; width:auto;}
 .feature-sponsor .role{font-size:.78rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--gold);}
 
 .logo-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:1rem;}
-.logo-grid .logo-plate{height:96px; border-radius:16px; background:#fff; border:1px solid var(--line); display:grid; place-items:center; color:var(--ink-soft); font-weight:600; font-size:.9rem; text-align:center; padding:.8rem; transition:.3s; overflow:hidden;}
+.logo-grid .logo-plate{height:96px; border-radius:16px; background:#fff; border:1px solid var(--line); display:grid; place-items:center; color:var(--ink-soft); font-weight:600; font-size:.9rem; text-align:center; padding:.8rem; transition:.3s; overflow:hidden; text-decoration:none;}
+a.logo-plate{cursor:pointer;}
 .logo-grid .logo-plate.empty{background:var(--cream-2);}
 .logo-grid .logo-plate img{max-height:66px; max-width:88%; width:auto; object-fit:contain;}
 .logo-grid .logo-plate:hover{transform:translateY(-4px); box-shadow:var(--shadow);}
@@ -542,6 +543,11 @@ body.has-cursor input, body.has-cursor [data-cursor]{cursor:none;}
 .woo-cursor.is-label{width:84px; height:84px; margin:-42px 0 0 -42px; background:rgba(95,41,80,.92);}
 .woo-cursor.is-label .cur-label, .woo-cursor.is-link .cur-label{opacity:1; transform:none;}
 .woo-cursor.is-down{transform:scale(.8);}
+/* light cursor over magenta / plum sections so it stays visible */
+.woo-cursor.is-invert{background:var(--cream);}
+.woo-cursor.is-invert.is-link{background:rgba(255,255,255,.92);}
+.woo-cursor.is-invert.is-label{background:rgba(255,255,255,.96);}
+.woo-cursor.is-invert .cur-label{color:var(--plum);}
 
 /* ---- HERO — kinetic type (fits inside one viewport) ---- */
 .wow-hero{position:relative; padding:clamp(1.2rem,3vh,2.2rem) 0 clamp(1.6rem,4vh,2.6rem); overflow:hidden;}
@@ -611,7 +617,7 @@ body.has-cursor input, body.has-cursor [data-cursor]{cursor:none;}
   transform:rotate(-1deg) scale(1.02); transform-origin:center;
 }
 .marquee-track{display:inline-flex; will-change:transform; animation:mqScroll 26s linear infinite;}
-.mq-chunk{display:inline-flex; align-items:center; gap:2.4rem; padding-right:2.4rem;}
+.mq-chunk{display:inline-flex; flex:0 0 auto; align-items:center; gap:2.4rem; padding-right:2.4rem;}
 .mq-chunk span{
   font-family:var(--f-display); font-weight:700; font-style:italic;
   font-size:clamp(1.05rem,1.9vw,1.5rem); color:var(--plum); text-transform:uppercase; letter-spacing:.04em;
@@ -710,7 +716,9 @@ body.has-cursor input, body.has-cursor [data-cursor]{cursor:none;}
   .wow-title{font-size:clamp(2.3rem,9.5vw,3.6rem);}
   .wow-hero-foot{max-width:100%; flex-direction:column; align-items:flex-start;}
   .scroll-cue{display:none;}
+  .chapter{min-height:0;}
   .chapter-text{max-width:100%;}
+  .chapter-text .wd{opacity:1 !important;}
   .chapter-peek{width:150px; transform:translateX(55%); opacity:.9;}
   .wow-cards .tilt-a,.wow-cards .tilt-b,.wow-cards .tilt-c{transform:none;}
 }

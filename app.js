@@ -4,6 +4,7 @@
 
 const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const finePointer = window.matchMedia('(pointer: fine)').matches;
+const isMobile = window.matchMedia('(max-width: 920px)').matches;
 
 // ---------- Sticky header shadow ----------
 const header = document.getElementById('site-header');
@@ -68,6 +69,8 @@ if (finePointer && !prefersReduced) {
   document.addEventListener('mouseover', e => {
     const labelled = e.target.closest('[data-cursor]');
     const link = e.target.closest('a, button, input, [data-cursor]');
+    const onDark = e.target.closest('.contact-band, .panel.plum, .card.join, .card.feature');
+    cur.classList.toggle('is-invert', !!onDark);
     cur.classList.toggle('is-label', !!labelled);
     cur.classList.toggle('is-link', !!link && !labelled);
     if (labelled) label.textContent = labelled.getAttribute('data-cursor');
@@ -126,9 +129,11 @@ if (window.gsap && window.ScrollTrigger && !prefersReduced) {
     });
   }
 
-  // -- pinned chapter: words light up as you read --
+  // -- pinned chapter: words light up as you read (desktop only) --
+  // On mobile the pin/scrub forces several swipes to get through, so we skip it:
+  // the chapter renders as a normal section (words fully visible) shown in one swipe.
   const chapterText = document.querySelector('.chapter-text[data-words]');
-  if (chapterText) {
+  if (chapterText && !isMobile) {
     // wrap words (keeping styled sub-spans intact)
     const wrapWords = node => {
       [...node.childNodes].forEach(child => {
