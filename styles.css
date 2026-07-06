@@ -1,6 +1,15 @@
 /* ============================================================
    The Woo Cycle — shared styles
    ============================================================ */
+@font-face{
+  font-family:"Maia Moore";
+  src:url("assets/fonts/maia-moore.woff2?v=2") format("woff2"),
+      url("assets/fonts/maia-moore.woff?v=2") format("woff");
+  font-weight:400;
+  font-style:normal;
+  font-display:swap;
+}
+
 :root{
   /* ---- Woo Cycle brand palette ---- */
   --cream:#FAF9F4;        /* book paper — base / light elements */
@@ -20,13 +29,16 @@
   --line:rgba(54,46,35,.14);
   --shadow:24px 24px 60px rgba(54,46,35,.12);
 
-  /* the book's typeface — real Comic Sans where installed, Comic Neue everywhere else */
-  --f-display:"Comic Sans MS","Comic Neue","Chalkboard SE",cursive;
-  --f-body:"Comic Sans MS","Comic Neue","Chalkboard SE",cursive;
+  /* Maia Moore — the brand's handwritten face; Comic Sans/Neue fall back for
+     bold and for glyphs Maia Moore lacks (& - — · / @ %) */
+  --f-display:"Maia Moore","Comic Sans MS","Comic Neue","Chalkboard SE",cursive;
+  --f-body:"Maia Moore","Comic Sans MS","Comic Neue","Chalkboard SE",cursive;
 }
 
 *{box-sizing:border-box; margin:0; padding:0;}
-html{scroll-behavior:smooth;}
+/* Maia Moore renders small, so scale the whole type system up 1.5x.
+   Everything is rem-based, so this single lever enlarges all text. */
+html{scroll-behavior:smooth; font-size:150%;}
 body{
   font-family:var(--f-body);
   background:var(--cream);
