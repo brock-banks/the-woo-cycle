@@ -172,6 +172,18 @@ if (window.gsap && window.ScrollTrigger && !prefersReduced) {
         .from('.chapter-link', { opacity: 0, y: 20 }, '>-0.2');
   }
 
+  // -- portrait figure parallax (about / get-your-copy): the popped-out figure
+  //    drifts up a touch as its card scrolls through the viewport, deepening the 3D feel --
+  gsap.utils.toArray('.portrait.has-img .pf-figure').forEach(fig => {
+    gsap.set(fig, { xPercent: -50 });            // keep horizontal centering under GSAP transforms
+    gsap.fromTo(fig,
+      { yPercent: 0 },
+      {
+        yPercent: -8, ease: 'none',
+        scrollTrigger: { trigger: fig.closest('.portrait'), start: 'top bottom', end: 'bottom top', scrub: true }
+      });
+  });
+
   // -- community cards float in --
   const cards = gsap.utils.toArray('.wow-cards .card');
   if (cards.length) {
