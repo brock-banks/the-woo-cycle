@@ -12,8 +12,8 @@
 
 :root{
   /* ---- Woo Cycle brand palette ---- */
-  --cream:#FAF9F4;        /* book paper — base / light elements */
-  --cream-2:#F1E9D7;      /* warm card / panel over the paper */
+  --cream:#faf4f7;        /* book paper — base / light elements */
+  --cream-2:#f1d7e0;      /* warm card / panel over the paper */
   --ink:#362E23;          /* dark brown — headings & text */
   --ink-soft:#5E5344;     /* muted brown — body text */
   --plum:#5F2950;         /* deep plum — primary brand */
@@ -41,19 +41,21 @@
 html{scroll-behavior:smooth; font-size:150%;}
 body{
   font-family:var(--f-body);
-  background:var(--cream);
+  background:#efefef;
   color:var(--ink);
   line-height:1.6;
   -webkit-font-smoothing:antialiased;
   overflow-x:hidden;
 }
 
-/* the book's own paper texture, held behind everything (iOS-safe) */
+/* the book's own paper texture, held behind everything (iOS-safe)
+   — neutralised to read white while keeping the watercolour fibres */
 body::before{
   content:"";
   position:fixed; inset:0; z-index:-1;
   pointer-events:none;
-  background:var(--cream) url("assets/paper.jpg") center center / cover no-repeat;
+  background:#fff url("assets/paper.jpg") center center / cover no-repeat;
+  filter:grayscale(1) brightness(1.03);
 }
 
 a{color:inherit; text-decoration:none;}
@@ -83,11 +85,11 @@ img{max-width:100%; display:block;}
 /* ---------- Header ---------- */
 header{
   position:sticky; top:0; z-index:100;
-  background:rgba(250,249,244,.88);
+  background:rgba(255,255,255,.85);
   border-bottom:1px solid transparent;
   transition:border-color .4s, background .4s;
 }
-header.scrolled{border-color:var(--line); background:rgba(250,249,244,.9);}
+header.scrolled{border-color:var(--line); background:rgba(255,255,255,.9);}
 .nav{display:flex; align-items:center; justify-content:space-between; padding:1.05rem 0;}
 .logo{display:flex; align-items:center; gap:.6rem; font-family:var(--f-display); font-weight:600; font-size:1.35rem; letter-spacing:-.01em;}
 .logo em{font-style:italic; color:var(--plum);}
@@ -854,10 +856,13 @@ body.has-cursor input, body.has-cursor [data-cursor]{cursor:none;}
   .foot-grid{grid-template-columns:1fr 1fr; gap:2rem;}
   .nav-links{display:none;}
   .menu-btn{display:block;}
-  .nav-links.open{display:flex; position:absolute; top:100%; left:0; right:0; flex-direction:column; align-items:flex-start; gap:1.1rem; background:var(--cream); padding:1.5rem 4vw; border-bottom:1px solid var(--line);}
+  .nav-links.open{display:flex; position:absolute; top:100%; left:0; right:0; flex-direction:column; align-items:flex-start; gap:1.1rem; background:#fff; padding:1.5rem 4vw; border-bottom:1px solid var(--line);}
 }
 @media (max-width:520px){
   .foot-grid{grid-template-columns:1fr;}
-  .hero-btns{flex-direction:column; align-items:stretch;}
-  .hero-btns .btn{justify-content:center;}
+}
+/* full-width hero CTAs on phones — premium, thumb-friendly */
+@media (max-width:640px){
+  .hero-btns{width:100%; flex-direction:column; align-items:stretch; gap:.8rem;}
+  .hero-btns .btn{width:100%; justify-content:center;}
 }
